@@ -1,18 +1,5 @@
-Exactly 100% the same bug that I'm still reproducing when I escaped the adobe reader sandbox with a filepicker window (see CVE-2018-8314).
+Inject into IE11.
 
-We just create a special junction folder locally in the favorites folder now (a folder with the name "{0AFACED1-E828-11D1-9187-B532F1E9575D}" and a target.lnk inside)
-Then open it with the IE11 broker.
+Will work on other sandboxes that allow the opening of windows filepickers through a broker.
 
-As a result we can render javascript at medium integrity.
-
-This is 100% the same bug I reported earlier, the only difference is that for Adobe Reader I had to place the junction on a remote network share because I couldn't get it to work locally.
-At the time (a year ago) you guys said I wouldn't get a bounty because it was patched in the insider build.
-Well.. this still works a year later. So I'm kind of moody.
-
-Also.. since the issue is in the filepicker code.. this might break other sandboxes too.... 
-
-To repoduce: Move testdll.dll and injectdll.exe into a folder.. add the all application packages ace to the folder and inject testdll.dll into the appcontainer process of IE11.
-
-Check the demo .. you should get those results.
-
-I don't know why it didn't get patched, maybe I'm just a retarded bear and I have no clue what I'm talking about.
+You will gain medium IL javascript execution, at which point you simply retrigger your IE RCE bug.
