@@ -1,6 +1,8 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
 {\*\generator Riched20 10.0.17763}\viewkind4\uc1 
-\pard\sa200\sl276\slmult1\b\f0\fs22\lang9 Windows Error Reporting Arbitrary DACL write\b0\par
+\pard\sa200\sl276\slmult1\b\f0\fs22\lang9 EDIT: Apparently this was patched earlier this month.. so whatever.\par
+\par
+Windows Error Reporting Arbitrary DACL write\b0\par
 It can take upwards of 15 minutes for the bug to trigger. If it takes too long, closing the program, cleaning out the reportarchive folder in programdata (it may mess up the timing if there's too many reports in there as result of running our poc for too long), deleting the c:\\blah folder.. etc.. might help. \par
 I guess a more determined attacker might be able to make it more reliable. It is just an insanely small window in which we can win our race, I wasn't even sure if I could ever exploit it at all. \par
 I don't see a way to use OPLOCKS to reliably win the race.. and while I can make it work fairly reliable in my VM, I need to use a "rand()" function to bruteforce a delay needed to hit the correct timing.. because this timing will vary wildly from hardware setup to setup.\par
